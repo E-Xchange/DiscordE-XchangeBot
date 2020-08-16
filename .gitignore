@@ -1,2 +1,4 @@
-# editor
 /.vscode
+/.idea
+/venv
+/left
