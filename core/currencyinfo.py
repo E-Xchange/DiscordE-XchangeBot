@@ -1,10 +1,13 @@
-import json
+import json, os
 import urllib.request
+from core.databasemodule import addcrrency
+from dotenv import load_dotenv
 
-url_USD = 'http://api.nbp.pl/api/exchangerates/rates/a/usd/'
-url_EUR = 'http://api.nbp.pl/api/exchangerates/rates/a/eur/'
-url_AUD = 'http://api.nbp.pl/api/exchangerates/rates/a/aud/'
-url_CHF = 'http://api.nbp.pl/api/exchangerates/rates/a/chf/'
+load_dotenv()
+url_USD = os.getenv('nbp_link_usd')
+url_EUR = os.getenv('nbp_link_eur')
+url_AUD = os.getenv('nbp_link_aud')
+url_CHF = os.getenv('nbp_link_uchf')
 
 open_url_USD = urllib.request.urlopen(url_USD)
 open_url_EUR = urllib.request.urlopen(url_EUR)

@@ -1,4 +1,9 @@
 /.vscode
 /.idea
 /venv
-/left
+left.py
+*.env
+*.pyc
+.env/
+__pycache__/
+
