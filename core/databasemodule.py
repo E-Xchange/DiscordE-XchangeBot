@@ -3,7 +3,7 @@ import mariadb
 SQLdb = mariadb.connect(
     host="127.0.0.1",
     user="root",
-    password="Piotr123",
+    password="piotr2002",
     database="exchange",
 )
 
