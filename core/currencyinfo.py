@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 url_USD = os.getenv('nbp_link_usd')
-print(url_USD)
 url_EUR = os.getenv('nbp_link_eur')
 url_AUD = os.getenv('nbp_link_aud')
 url_CHF = os.getenv('nbp_link_uchf')
@@ -24,7 +23,8 @@ def data(url_open):
     data = url_open.read()
     json_data = json.loads(data)
     price = json_data['rates'][0]['mid'] / base_USD_price
-    return(str(round(price, 2)))
+    return (round(price, 2))
+
 
 USD_EUR_price = data(open_url_EUR)
 USD_AUD_price = data(open_url_AUD)
@@ -33,4 +33,3 @@ USD_CHF_price = data(open_url_CHF)
 addcrrency(USD_EUR_price, 'EUR')
 addcrrency(USD_AUD_price, 'AUD')
 addcrrency(USD_CHF_price, 'CHF')
-
