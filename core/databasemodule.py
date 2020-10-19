@@ -13,17 +13,18 @@ def addmetals(price, type):
     sql = "INSERT INTO metals (price, type) VALUES (%s, %s)"
     val = (price, type)
     mycursor.execute(sql, val)
-
+    SQLdb.commit()
 
 def addcrypto(price, type):
     mycursor = SQLdb.cursor()
     sql = "INSERT INTO crypto (price, type) VALUES (%s, %s)"
     val = (price, type)
     mycursor.execute(sql, val)
-
+    SQLdb.commit()
 
 def addcrrency(price, type):
     mycursor = SQLdb.cursor()
-    sql = "INSERT INTO crrency (price, type) VALUES (%s, %s)"
+    sql = "INSERT INTO currency (price, type) VALUES (%s, %s)"
     val = (price, type)
     mycursor.execute(sql, val)
+    SQLdb.commit()
