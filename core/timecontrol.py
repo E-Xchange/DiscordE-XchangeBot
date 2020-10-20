@@ -1,4 +1,4 @@
-import core.config as cfg
+import config.time_cfg as cfg
 import os
 import schedule
 import time

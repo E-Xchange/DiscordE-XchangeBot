@@ -1,5 +1,4 @@
-
-#time config
+# time config
 
 currency_start_time = [
     "09:00",
