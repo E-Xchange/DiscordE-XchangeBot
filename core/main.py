@@ -5,28 +5,22 @@ from dotenv import load_dotenv
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.members = True
+
+client = discord.Client(intents=intents)
+
 
 @client.event
-async def on_ready():
-    print(f'{client.user.name} has connected to Discord!')
+async def on_ready(): print(f'E-Xchange Working!')
+
 
 @client.event
-async def on_member_join(member, message):
+async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
-        f'Hi Nice to meet you'
+        f'Hello {member.name}, now I will keep you informed about news from the financial world. Good luck'
     )
-    await message.channel.send(f"Dolaczyl do nas {client.user.name}")
-    print("dolaczyl ")
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    text = "bot test"
-
-    if message.content == "99!":
-        await message.channel.send(text)
 
 client.run(KEY_API)
