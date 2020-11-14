@@ -2,6 +2,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
+from config import help_hint as hint
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -25,9 +26,13 @@ async def on_member_join(member):
     )
 
 
-@bot.command(name="pik", help="test")
-async def ping(ctx):
-    await ctx.send("klik")
+@bot.command(name="price", help=hint.price_comand_help)
+async def price(ctx):
+    await ctx.send("Check price of metals: !metals \n"
+                   "Check price of crypto: !crypto \n"
+                   "Check price of currency: !currency \n")
+
+
 
 
 bot.run(KEY_API)
