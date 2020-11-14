@@ -1,6 +1,7 @@
 import os
 import discord
 from dotenv import load_dotenv
+from discord.ext import commands
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -8,14 +9,15 @@ KEY_API = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.members = True
 
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-@client.event
-async def on_ready(): print(f'E-Xchange Working!')
+@bot.event
+async def on_ready():
+    print(f'E-Xchange Working!')
 
 
-@client.event
+@bot.event
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
@@ -23,4 +25,9 @@ async def on_member_join(member):
     )
 
 
-client.run(KEY_API)
+@bot.command(name="pik", help="test")
+async def ping(ctx):
+    await ctx.send("klik")
+
+
+bot.run(KEY_API)
