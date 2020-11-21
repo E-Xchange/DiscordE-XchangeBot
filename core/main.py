@@ -1,8 +1,10 @@
 import os
+import sys
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
-from config import help_hint as hint
+from cfg import help_hint as hint
+
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -27,9 +29,12 @@ async def on_member_join(member):
 
 
 bot.remove_command("help")
+
+
 @bot.command(name="help")
 async def helpComand(ctx):
-    embed = discord.Embed(title="Helper", description=f"!print - {hint.price_comand_help}", color=0x3bbdba)
+    embed = discord.Embed(
+        title="Helper", description=f"!print - {hint.price_comand_help}", color=0x3bbdba)
     embed.set_footer(text="E-Xchange")
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)

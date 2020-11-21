@@ -6,4 +6,4 @@ left.py
 *.pyc
 .env/
 __pycache__/
-
+/requirements.txt
