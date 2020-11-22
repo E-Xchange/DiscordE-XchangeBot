@@ -1,6 +1,7 @@
-import json, os
+import json
+import os
 import urllib.request
-from core.databasemodule import addcrrency
+from databasemodule import addcurrency
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,6 +31,6 @@ USD_EUR_price = data(open_url_EUR)
 USD_AUD_price = data(open_url_AUD)
 USD_CHF_price = data(open_url_CHF)
 
-addcrrency(USD_EUR_price, 'EUR')
-addcrrency(USD_AUD_price, 'AUD')
-addcrrency(USD_CHF_price, 'CHF')
+addcurrency(USD_EUR_price, 'EUR')
+addcurrency(USD_AUD_price, 'AUD')
+addcurrency(USD_CHF_price, 'CHF')

@@ -2,7 +2,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
-from cfg import help_hint as hint
+from config import help_hint as hint
 
 
 load_dotenv()
@@ -46,5 +46,10 @@ async def price(ctx):
                                      " Check price of crypto -> !crypto \n\n"
                                      " Check price of metals -> !metals ```\n\n")
 
+
+@bot.command(name="currency")
+async def currencyPrice(ctx):
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send()
 
 bot.run(KEY_API)

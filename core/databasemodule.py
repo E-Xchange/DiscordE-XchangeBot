@@ -24,9 +24,18 @@ def addcrypto(price, type):
     SQLdb.commit()
 
 
-def addcrrency(price, type):
+def addcurrency(price, type):
     mycursor = SQLdb.cursor()
     sql = "INSERT INTO currency (price, type) VALUES (%s, %s)"
     val = (price, type)
     mycursor.execute(sql, val)
     SQLdb.commit()
+
+
+def takeprice(type):
+    mycursor = SQLdb.cursor()
+    mycursor.execute(f"SELECT price FROM {type} WHERE date=(SELECT MAX(date) FROM {type})")
+    print(mycursor.fetchall())
+
+
+takeprice("currency")
