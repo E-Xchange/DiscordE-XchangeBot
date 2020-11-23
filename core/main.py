@@ -50,8 +50,23 @@ async def price(ctx):
 
 @bot.command(name="currency")
 async def currencyPrice(ctx):
-    embed = embedAdd('Currency Price', 0x008000)
+    embed = embedAdd('Currency Price', 0x008000, "currency")
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)
+
+
+@bot.command(name="crypto")
+async def cryptoPrice(ctx):
+    embed = embedAdd('Crypto Price', 0x008ec2, "crypto")
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(embed=embed)
+
+
+@bot.command(name="metals")
+async def cmetalsPrice(ctx):
+    embed = embedAdd('Metals Price', 0x797e80, "metals")
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(embed=embed)
+
 
 bot.run(KEY_API)

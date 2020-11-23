@@ -1,6 +1,7 @@
-import json, os
+import json
+import os
 import urllib.request
-from core.databasemodule import addcrypto
+from databasemodule import addcrypto
 from dotenv import load_dotenv
 
 load_dotenv()
