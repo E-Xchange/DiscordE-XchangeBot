@@ -3,7 +3,7 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from config import help_hint as hint
-from databasemodule import takeprice
+from module import embedAdd
 
 
 load_dotenv()
@@ -50,15 +50,8 @@ async def price(ctx):
 
 @bot.command(name="currency")
 async def currencyPrice(ctx):
-    take_price = takeprice("currency")
-    embed = discord.Embed(title="Currency Price", color=0x008000)
-    i = 0
-    for x in take_price:
-        embed.add_field(name=f"{take_price[i][1]}", value=f"{take_price[i][0]}", inline=False)
-        i += 1
-
+    embed = embedAdd('Currency Price', 0x008000)
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)
-
 
 bot.run(KEY_API)
