@@ -34,8 +34,5 @@ def addcurrency(price, type):
 
 def takeprice(type):
     mycursor = SQLdb.cursor()
-    mycursor.execute(f"SELECT price FROM {type} WHERE date=(SELECT MAX(date) FROM {type})")
-    print(mycursor.fetchall())
-
-
-takeprice("currency")
+    mycursor.execute(f"SELECT price, type FROM {type} WHERE date=(SELECT MAX(date) FROM {type})")
+    return mycursor.fetchall()
