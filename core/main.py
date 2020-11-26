@@ -3,8 +3,6 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from config import help_hint as hint
-from module import embedAdd
-
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -17,7 +15,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print('E-Xchange Working!')
+    print(f'E-Xchange Working!')
 
 
 @bot.event
@@ -47,11 +45,5 @@ async def price(ctx):
                                      " Check price of crypto -> !crypto \n\n"
                                      " Check price of metals -> !metals ```\n\n")
 
-
-@bot.command(name="currency")
-async def currencyPrice(ctx):
-    embed = embedAdd('Currency Price', 0x008000)
-    await ctx.author.create_dm()
-    await ctx.author.dm_channel.send(embed=embed)
 
 bot.run(KEY_API)
