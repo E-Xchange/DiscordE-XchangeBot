@@ -3,6 +3,7 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from config import help_hint as hint
+from module import embedAdd
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -44,6 +45,27 @@ async def price(ctx):
     await ctx.author.dm_channel.send("``` Check price of currency -> !currency \n\n"
                                      " Check price of crypto -> !crypto \n\n"
                                      " Check price of metals -> !metals ```\n\n")
+
+
+@bot.command(name="currency")
+async def currencyPrice(ctx):
+    embed = embedAdd('Currency Price', 0x008000, "currency")
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(embed=embed)
+
+
+@bot.command(name="crypto")
+async def cryptoPrice(ctx):
+    embed = embedAdd('Crypto Price', 0x008ec2, "crypto")
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(embed=embed)
+
+
+@bot.command(name="metals")
+async def cmetalsPrice(ctx):
+    embed = embedAdd('Metals Price', 0x797e80, "metals")
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(embed=embed)
 
 
 bot.run(KEY_API)
