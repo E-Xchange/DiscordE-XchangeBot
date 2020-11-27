@@ -2,8 +2,10 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
-from config import help_hint as hint
 from module import embedAdd
+from databasemodule import adddiscordid
+from config import help_hint as hint
+
 
 load_dotenv()
 KEY_API = os.getenv('DISCORD_TOKEN')
@@ -16,7 +18,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f'E-Xchange Working!')
+    print('E-Xchange Working!')
 
 
 @bot.event
@@ -45,6 +47,14 @@ async def price(ctx):
     await ctx.author.dm_channel.send("``` Check price of currency -> !currency \n\n"
                                      " Check price of crypto -> !crypto \n\n"
                                      " Check price of metals -> !metals ```\n\n")
+
+
+@bot.command(name="alertON")
+async def notyficationON(ctx):
+    cl_discord_id = bot.user.id
+    adddiscordid(cl_discord_id)
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send("You will receive notifications from now on")
 
 
 @bot.command(name="currency")
