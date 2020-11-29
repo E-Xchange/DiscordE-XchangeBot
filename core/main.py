@@ -3,7 +3,7 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 from module import embedAdd
-from databasemodule import adddiscordid
+from databasemodule import adddiscordid, removediscordid
 from config import help_hint as hint
 
 
@@ -35,7 +35,7 @@ bot.remove_command("help")
 @bot.command(name="help")
 async def helpComand(ctx):
     embed = discord.Embed(
-        title="Helper", description=f"!print - {hint.price_comand_help}", color=0x3bbdba)
+        title="Helper", description=f"!price - {hint.price_comand_help}", color=0x3bbdba)
     embed.set_footer(text="E-Xchange")
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)
@@ -44,17 +44,30 @@ async def helpComand(ctx):
 @bot.command(name="price", help=hint.price_comand_help)
 async def price(ctx):
     await ctx.author.create_dm()
-    await ctx.author.dm_channel.send("``` Check price of currency -> !currency \n\n"
-                                     " Check price of crypto -> !crypto \n\n"
-                                     " Check price of metals -> !metals ```\n\n")
+    await ctx.author.dm_channel.send(hint.price_info)
 
 
 @bot.command(name="alertON")
 async def notyficationON(ctx):
-    cl_discord_id = bot.user.id
+    cl_discord_id = ctx.author.id
     adddiscordid(cl_discord_id)
     await ctx.author.create_dm()
-    await ctx.author.dm_channel.send("You will receive notifications from now on")
+    await ctx.author.dm_channel.send(hint.notification_alert_on)
+
+
+@bot.command(name="alertOFF")
+async def notyficationOFF(ctx):
+    cl_discord_id = bot.user.id  # TODO: remove variable
+    removediscordid(cl_discord_id)
+    await ctx.author.create_dm()
+    await ctx.author.dm_channel.send(hint.notification_alert_off)
+
+
+#
+@bot.event()
+async def pushNotification(ctx):
+    await ctx.author.id.create_dm()
+    await ctx.author.dm_channel.send(hint.notification_alert_off)
 
 
 @bot.command(name="currency")

@@ -34,6 +34,7 @@ def addcurrency(price, type):
 
 def takeprice(type):
     mycursor = SQLdb.cursor()
+    # TODO: cut this line
     mycursor.execute(f"SELECT price, type FROM {type} WHERE date=(SELECT MAX(date) FROM {type})")
     return mycursor.fetchall()
 
@@ -41,6 +42,14 @@ def takeprice(type):
 def adddiscordid(discordid):
     mycursor = SQLdb.cursor()
     sql = "INSERT INTO notification (dcid) VALUES (%s)"
+    val = (discordid, )
+    mycursor.execute(sql, val)
+    SQLdb.commit()
+
+
+def removediscordid(discordid):
+    mycursor = SQLdb.cursor()
+    sql = "DELETE FROM notification WHERE (dcid=%s)"
     val = (discordid, )
     mycursor.execute(sql, val)
     SQLdb.commit()
