@@ -53,3 +53,9 @@ def removediscordid(discordid):
     val = (discordid, )
     mycursor.execute(sql, val)
     SQLdb.commit()
+
+
+def takediscordid():
+    mycursor = SQLdb.cursor()
+    mycursor.execute("SELECT dcid FROM notification")
+    return mycursor.fetchall()
