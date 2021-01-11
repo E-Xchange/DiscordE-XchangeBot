@@ -57,17 +57,18 @@ async def notyficationON(ctx):
 
 @bot.command(name="alertOFF")
 async def notyficationOFF(ctx):
-    cl_discord_id = bot.user.id  # TODO: remove variable
+    cl_discord_id = ctx.author.id  # TODO: remove variable
+    print(cl_discord_id)
     removediscordid(cl_discord_id)
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(hint.notification_alert_off)
 
 
 #
-@bot.event()
-async def pushNotification(ctx):
-    await ctx.author.id.create_dm()
-    await ctx.author.dm_channel.send(hint.notification_alert_off)
+# @bot.event()
+# async def pushNotification(ctx):
+#     await ctx.author.id.create_dm()
+#     await ctx.author.dm_channel.send(hint.notification_alert_off)
 
 
 @bot.command(name="currency")

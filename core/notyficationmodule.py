@@ -27,18 +27,21 @@ def asyncloop():
 
     async def loop():
         for i in takediscordid():
-            print(takediscordid())
-            await notyficationSend(i)
+            print(i)
+            print(i[0])
+            print(type(i[0]))
+            await notyficationSend(i[0])
 
     bot.loop.create_task(loop())
 
 
-async def whilehehe():
-    schedule.every().day.at("21:24").do(asyncloop)
-    while True:
-        schedule.run_pending()
-        await asyncio.sleep(60)
-
-
-bot.loop.create_task(whilehehe())
+asyncloop()
+# async def whilehehe():
+#     schedule.every().day.at("21:32").do(asyncloop)
+#     while True:
+#         schedule.run_pending()
+#         await asyncio.sleep(60)
+#
+#
+# bot.loop.create_task(whilehehe())
 bot.run(KEY_API)
