@@ -90,5 +90,4 @@ async def cmetalsPrice(ctx):
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)
 
-
 bot.run(KEY_API)
