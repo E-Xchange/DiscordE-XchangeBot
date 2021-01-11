@@ -5,6 +5,7 @@ from discord.ext import commands
 from module import embedAdd
 from databasemodule import adddiscordid, removediscordid
 from config import help_hint as hint
+from notyficationmodule import mainNotiSend
 
 
 load_dotenv()
@@ -30,6 +31,8 @@ async def on_member_join(member):
 
 
 bot.remove_command("help")
+
+mainNotiSend(bot)
 
 
 @bot.command(name="help")
@@ -64,13 +67,6 @@ async def notyficationOFF(ctx):
     await ctx.author.dm_channel.send(hint.notification_alert_off)
 
 
-#
-# @bot.event()
-# async def pushNotification(ctx):
-#     await ctx.author.id.create_dm()
-#     await ctx.author.dm_channel.send(hint.notification_alert_off)
-
-
 @bot.command(name="currency")
 async def currencyPrice(ctx):
     embed = embedAdd('Currency Price', 0x008000, "currency")
@@ -90,5 +86,6 @@ async def cmetalsPrice(ctx):
     embed = embedAdd('Metals Price', 0x797e80, "metals")
     await ctx.author.create_dm()
     await ctx.author.dm_channel.send(embed=embed)
+
 
 bot.run(KEY_API)

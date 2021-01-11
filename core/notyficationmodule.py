@@ -1,47 +1,28 @@
-import os
 import time
 import asyncio
-import discord
 import schedule
-from dotenv import load_dotenv
-from discord.ext import commands
 from databasemodule import takediscordid
 
-load_dotenv()
-KEY_API = os.getenv('DISCORD_TOKEN')
 
-intents = discord.Intents.default()
-intents.members = True
+def mainNotiSend(bot):
+    def asyncloop():
 
-bot = commands.Bot(command_prefix='!', intents=intents)
+        async def notyficationSend(id):
+            time.sleep(1)
+            await bot.wait_until_ready()
+            user = await bot.fetch_user(id)
+            await user.send("Your Notificate")
 
+        async def loop():
+            for i in takediscordid():
+                await notyficationSend(i[0])
 
-def asyncloop():
+        bot.loop.create_task(loop())
 
-    async def notyficationSend(id):
-        time.sleep(1)
-        await bot.wait_until_ready()
-        user = await bot.fetch_user(id)
-        print(user)
-        await user.send("Your message goes here")
+    async def whilehehe():
+        schedule.every().day.at("09:30").do(asyncloop)
+        while True:
+            schedule.run_pending()
+            await asyncio.sleep(60)
 
-    async def loop():
-        for i in takediscordid():
-            print(i)
-            print(i[0])
-            print(type(i[0]))
-            await notyficationSend(i[0])
-
-    bot.loop.create_task(loop())
-
-
-asyncloop()
-# async def whilehehe():
-#     schedule.every().day.at("21:32").do(asyncloop)
-#     while True:
-#         schedule.run_pending()
-#         await asyncio.sleep(60)
-#
-#
-# bot.loop.create_task(whilehehe())
-bot.run(KEY_API)
+    bot.loop.create_task(whilehehe())
