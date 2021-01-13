@@ -13,16 +13,16 @@ def mainNotiSend(bot):
             user = await bot.fetch_user(id)
             await user.send("Your Notificate")
 
-        async def loop():
+        async def userIteration():
             for i in takediscordid():
                 await notyficationSend(i[0])
 
-        bot.loop.create_task(loop())
+        bot.loop.create_task(userIteration())
 
-    async def whilehehe():
+    async def timeLoop():
         schedule.every().day.at("09:30").do(asyncloop)
         while True:
             schedule.run_pending()
             await asyncio.sleep(60)
 
-    bot.loop.create_task(whilehehe())
+    bot.loop.create_task(timeLoop())

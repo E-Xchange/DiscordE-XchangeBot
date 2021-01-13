@@ -1,4 +1,5 @@
 import mariadb
+import datetime
 
 SQLdb = mariadb.connect(
     host="127.0.0.1",
@@ -59,3 +60,13 @@ def takediscordid():
     mycursor = SQLdb.cursor()
     mycursor.execute("SELECT dcid FROM notification")
     return mycursor.fetchall()
+
+
+def takeLastBtc():
+    mycursor = SQLdb.cursor()
+    mycursor.execute("SELECT date FROM crypto WHERE type='BTC'")
+    print(mycursor.fetchall())
+    # return mycursor.fetchall()
+
+
+takeLastBtc()
