@@ -66,13 +66,13 @@ def takeLastBtc():
     mycursor = SQLdb.cursor()
     mycursor.execute("SELECT MAX(date) FROM crypto WHERE type='BTC'")
     yesterday_time_check = mycursor.fetchone()[0] - 88500
+
     sql = ("SELECT MAX(date),price FROM crypto WHERE type='BTC' AND (date<%s)")
     val = (yesterday_time_check, )
     mycursor.execute(sql, val)
-    print(mycursor.fetchall())
-    # yesterday_time_check = mycursor.fetchone()[0]
-    # print(yesterday_time_check)
-    # return mycursor.fetchall()
 
-
-takeLastBtc()
+    mycursor_data = mycursor.fetchone()
+    yesterday_time_real = mycursor_data[0]  # TODO: delete variable - time real (unnecessary)
+    yesterday_price_real = mycursor_data[1]
+    print(yesterday_price_real)
+    return yesterday_price_real
