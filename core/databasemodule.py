@@ -1,5 +1,4 @@
 import mariadb
-import datetime
 
 SQLdb = mariadb.connect(
     host="127.0.0.1",
@@ -64,15 +63,17 @@ def takediscordid():
 
 def takeLastBtc():
     mycursor = SQLdb.cursor()
-    mycursor.execute("SELECT MAX(date) FROM crypto WHERE type='BTC'")
-    yesterday_time_check = mycursor.fetchone()[0] - 88500
+    mycursor.execute("SELECT MAX(date),price  FROM crypto WHERE type='BTC'")
+    temp = mycursor.fetchone()
+    today_price_real, yesterday_time_check = temp[1], temp[0] - 85400
 
     sql = ("SELECT MAX(date),price FROM crypto WHERE type='BTC' AND (date<%s)")
     val = (yesterday_time_check, )
     mycursor.execute(sql, val)
 
     mycursor_data = mycursor.fetchone()
-    yesterday_time_real = mycursor_data[0]  # TODO: delete variable - time real (unnecessary)
     yesterday_price_real = mycursor_data[1]
-    print(yesterday_price_real)
-    return yesterday_price_real
+    return today_price_real, yesterday_price_real
+
+
+takeLastBtc()
