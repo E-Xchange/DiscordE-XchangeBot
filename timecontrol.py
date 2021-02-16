@@ -19,6 +19,7 @@ def crypto_start(time):
 def metals_start(time):
     print("I'm working (metals)", time)
     os.system('python metalsinfo.py')
+
     return
 
 
