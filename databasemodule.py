@@ -64,12 +64,12 @@ def takediscordid():
 def takeLastBtc():
     mycursor = SQLdb.cursor()
     mycursor.execute(
-        "SELECT date, price FROM crypto WHERE type = 'BTC' ORDER BY date DESC LIMIT 1;")
+        f"SELECT date, price FROM crypto WHERE type = 'BTC' ORDER BY date DESC LIMIT 1;")
     temp = mycursor.fetchone()
     today_price_real, yesterday_time_check = temp[1], temp[0] - 85400
 
     sql = (
-        "SELECT date, price FROM crypto WHERE type='BTC' AND (date<%s) ORDER BY date DESC LIMIT 1")
+        f"SELECT date, price FROM crypto WHERE type='BTC' AND (date<%s) ORDER BY date DESC LIMIT 1")
     val = (yesterday_time_check, )
     mycursor.execute(sql, val)
 

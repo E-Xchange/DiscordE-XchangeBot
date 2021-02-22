@@ -5,4 +5,3 @@ left.py
 *.env
 *.pyc
 __pycache__/
-/requirements.txt
